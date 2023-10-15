@@ -14,15 +14,13 @@ function App() {
 	return (
 		<ChatContextProvider user={user}>
 			<NavBar />
-			<Container>
-				<Routes>
-					<Route path='/' element={user ? <Chat /> : <Login />} />
-					<Route path='/login' element={user ? <Chat /> : <Login />} />
-					<Route path='/register' element={user ? <Chat /> : <Register />} />
-					{/* If any path that does not exist , we will be navigated to the home route i.e "/" */}
-					<Route path='*' element={<Navigate to='/' />} />
-				</Routes>
-			</Container>
+			<Routes>
+				<Route path='/' element={user ? <Chat /> : <Login />} />
+				<Route path='/login' element={user ? <Chat /> : <Login />} />
+				<Route path='/register' element={user ? <Chat /> : <Register />} />
+				{/* If any path that does not exist , we will be navigated to the home route i.e "/" */}
+				<Route path='*' element={<Navigate to='/' />} />
+			</Routes>
 		</ChatContextProvider>
 	);
 }

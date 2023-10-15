@@ -8,20 +8,25 @@ import InputEmoji from 'react-input-emoji';
 
 const ChatBox = () => {
 	const {user} = useContext(AuthContext);
-	const {currentChat, messages, isMessagesLoading, sendTextMessage} =
-		useContext(ChatContext);
+	const {
+		currentChat,
+		messages,
+		isMessagesLoading,
+		sendTextMessage,
+		toggleChatBox,
+	} = useContext(ChatContext);
 	const {recipientUser} = useFetchRecipientUser(currentChat, user);
 	const [textMessage, setTextMessage] = useState('');
 	const scroll = useRef();
 
-	console.log('Text Message: ', textMessage);
+	// console.log('Text Message: ', textMessage);
 
 	// Scroll to the newest message each time messages array change
 	useEffect(() => {
 		scroll.current?.scrollIntoView({behavior: 'smooth'});
 	}, [messages]);
 
-	if (!recipientUser) {
+	if (!recipientUser || currentChat === null) {
 		return (
 			<p style={{textAlign: 'center', width: '100%'}}>
 				No conversation selected yet...
@@ -37,6 +42,21 @@ const ChatBox = () => {
 	return (
 		<Stack gap={4} className='chat-box'>
 			<div className='chat-header'>
+				<span onClick={toggleChatBox}>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						width='16'
+						height='16'
+						fill='currentColor'
+						className='bi bi-arrow-left'
+						viewBox='0 0 16 16'
+					>
+						<path
+							fillRule='evenodd'
+							d='M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z'
+						/>
+					</svg>
+				</span>
 				<strong>{recipientUser?.name}</strong>
 			</div>
 			<Stack gap={3} className='messages'>

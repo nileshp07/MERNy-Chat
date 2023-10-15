@@ -1,14 +1,16 @@
 import {useContext} from 'react';
 import {Alert, Button, Form, Row, Col, Stack} from 'react-bootstrap';
 import {AuthContext} from '../context/AuthContext';
+import sideImg from './../../public/sideImg.png';
 
 function Login() {
 	const {loginUser, loginError, loginInfo, updateLoginInfo, isLoginLoading} =
 		useContext(AuthContext);
 
 	return (
-		<>
-			<Form onSubmit={loginUser}>
+		<Stack direction='horizontal' style={{height: '86vh', overflow: 'hidden'}}>
+			<img src={sideImg} alt='Side Image' className='side-img' />
+			<Form onSubmit={loginUser} className='form'>
 				<Row
 					style={{
 						height: '100vh',
@@ -46,7 +48,7 @@ function Login() {
 					</Col>
 				</Row>
 			</Form>
-		</>
+		</Stack>
 	);
 }
 

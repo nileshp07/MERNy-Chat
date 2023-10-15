@@ -7,6 +7,7 @@ export const ChatContext = createContext();
 export const ChatContextProvider = ({children, user}) => {
 	const [userChats, setUserChats] = useState(null);
 	const [isUserChatsLoading, setIsUserChatsLoading] = useState(false);
+	const [isChatBoxOpen, setIsChatBoxOpen] = useState(false);
 	const [userChatsError, setUserChatsError] = useState(null);
 	const [potentialChats, setPotentialChats] = useState([]);
 	const [currentChat, setCurrentChat] = useState(null);
@@ -157,6 +158,11 @@ export const ChatContextProvider = ({children, user}) => {
 		getMessages();
 	}, [currentChat]);
 
+	const toggleChatBox = () => {
+		setCurrentChat(null);
+		setIsChatBoxOpen(!isChatBoxOpen);
+	};
+
 	const sendTextMessage = useCallback(
 		async (textMessage, sender, currentChatId, setTextMessage) => {
 			if (!textMessage) return console.log('Please type something...');
@@ -260,6 +266,7 @@ export const ChatContextProvider = ({children, user}) => {
 			value={{
 				userChats,
 				isUserChatsLoading,
+				toggleChatBox,
 				userChatsError,
 				potentialChats,
 				createChat,

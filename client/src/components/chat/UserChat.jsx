@@ -6,6 +6,7 @@ import {ChatContext} from '../../context/ChatContext';
 import {unreadNotificationsFunc} from '../../utils/unreadNotifications';
 import {useFetchLatestMessage} from '../../hooks/useFetchLatestMessage';
 import moment from 'moment';
+import {formatDateTime} from '../../utils/formatDateTime';
 
 const UserChat = ({chat, user}) => {
 	const {recipientUser} = useFetchRecipientUser(chat, user);
@@ -61,7 +62,7 @@ const UserChat = ({chat, user}) => {
 			</div>
 			<div className='d-flex flex-column align-items-end'>
 				<div className='data'>
-					{moment(latestMessage?.createdAt).calendar()}
+					{formatDateTime(moment(latestMessage?.createdAt))}
 				</div>
 				<div
 					className={

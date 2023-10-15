@@ -226,13 +226,32 @@ body {
 	justify-content: center;
 }
 
-.side-img {
+.backGround-container {
 	width: 50%;
-	height: 100%;
-	object-fit: cover;
+	height: calc(100vh - 7rem);
+	background: url(/src/assets/chat-illustration.svg);
+	background-position: left;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin: 0 2rem;
 }
 
 .form {
 	width: 50%;
-	height: 100%;
+	position: absolute;
+	top: 6rem;
+	right: 2rem;
+	overflow: hidden;
+}
+
+@media screen and (max-width: 900px) {
+	.backGround-container {
+		display: none;
+		margin: 0;
+	}
+	.form {
+		width: 100%;
+		top: 4rem;
+		right: 0;
+	}
 }

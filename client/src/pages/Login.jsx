@@ -1,24 +1,23 @@
 import {useContext} from 'react';
 import {Alert, Button, Form, Row, Col, Stack} from 'react-bootstrap';
 import {AuthContext} from '../context/AuthContext';
-import sideImg from './../../public/sideImg.png';
 
 function Login() {
 	const {loginUser, loginError, loginInfo, updateLoginInfo, isLoginLoading} =
 		useContext(AuthContext);
 
 	return (
-		<Stack direction='horizontal' style={{height: '86vh', overflow: 'hidden'}}>
-			<img src={sideImg} alt='Side Image' className='side-img' />
+		<>
+			<div direction='horizontal' className='backGround-container'></div>
+
 			<Form onSubmit={loginUser} className='form'>
 				<Row
 					style={{
-						height: '100vh',
 						justifyContent: 'center',
 						paddingTop: '10%',
 					}}
 				>
-					<Col xs={6}>
+					<Col xs={8}>
 						<Stack gap={3}>
 							<h2>Login</h2>
 							<Form.Control
@@ -48,7 +47,7 @@ function Login() {
 					</Col>
 				</Row>
 			</Form>
-		</Stack>
+		</>
 	);
 }
 

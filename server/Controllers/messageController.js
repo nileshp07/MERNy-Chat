@@ -1,4 +1,4 @@
-const messageModel = require('./../Models/messageModel');
+const messageModel = require('../Models/messageModel');
 
 // createMessage
 const createMessage = async (req, res) => {
